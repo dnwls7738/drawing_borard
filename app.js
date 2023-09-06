@@ -1,3 +1,5 @@
+// 모드변경 버튼 불러오기
+const modeBtn = document.getElementById("mode_btn");
 // 색팔레트 불러오기
 const colorOptions = Array.from(
 	document.getElementsByClassName("color-option")
@@ -14,7 +16,8 @@ const ctx = canvas.getContext("2d");
 canvas.width = 800;
 canvas.height = 800;
 
-let isPainting;
+let isPainting = false;
+let isFilling = false;
 // 초기 선 굵기
 ctx.lineWidth = lineWidth.value;
 
@@ -53,14 +56,34 @@ function onColorClick(e) {
 	ctx.fillStyle = e.target.dataset.color;
 	color.value = e.target.dataset.color;
 }
+// 모드 및 텍스트 변경
+function onModeClick() {
+	if (isFilling) {
+		isFilling = false;
+		modeBtn.innerText = "Fill";
+	} else {
+		isFilling = true;
+		modeBtn.innerText = "Draw";
+	}
+}
+function onCanvasClick() {
+	if (isFilling) {
+		ctx.fillRect(0, 0, 800, 800);
+	}
+}
+
 // 캔버스에 선그리는 이벤트
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", startPainting);
 canvas.addEventListener("mouseup", stopPainting);
 canvas.addEventListener("mouseleave", stopPainting);
+// 전체 색 채우기 이벤트
+canvas.addEventListener("click", onCanvasClick);
 // 선굵기 변경 이벤트
 lineWidth.addEventListener("change", onlineWidthChange);
 // 색 변경 이벤트
 color.addEventListener("change", ocColorChange);
 // 팔레트 색 변경 이벤트
 colorOptions.forEach((color) => color.addEventListener("click", onColorClick));
+// 모드 변경 이벤트
+modeBtn.addEventListener("click", onModeClick);
