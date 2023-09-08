@@ -1,5 +1,9 @@
 // 모드변경 버튼 불러오기
 const modeBtn = document.getElementById("mode_btn");
+// 클리어버튼 불러오기
+const clearBtn = document.getElementById("clear_btn");
+// 지우개버튼 불러오기
+const eraserBtn = document.getElementById("eraser_btn");
 // 색팔레트 불러오기
 const colorOptions = Array.from(
 	document.getElementsByClassName("color-option")
@@ -13,8 +17,11 @@ const canvas = document.querySelector("canvas");
 // 캔버스에 그릴 수 있는 붓(context)
 const ctx = canvas.getContext("2d");
 // 캔버스 크기 설정
-canvas.width = 800;
-canvas.height = 800;
+const CANVAS_WIDTH = 800;
+const CANVAS_HEIGHT = 800;
+
+canvas.width = CANVAS_WIDTH;
+canvas.height = CANVAS_HEIGHT;
 
 let isPainting = false;
 let isFilling = false;
@@ -66,10 +73,21 @@ function onModeClick() {
 		modeBtn.innerText = "Draw";
 	}
 }
+// 전체 채우기
 function onCanvasClick() {
 	if (isFilling) {
 		ctx.fillRect(0, 0, 800, 800);
 	}
+}
+// 클리어
+function onClearClick() {
+	ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+}
+// 지우기
+function onEraserClick() {
+	ctx.strokeStyle = "white";
+	isFilling = false;
+	modeBtn.innerText = "Fill";
 }
 
 // 캔버스에 선그리는 이벤트
@@ -87,3 +105,7 @@ color.addEventListener("change", ocColorChange);
 colorOptions.forEach((color) => color.addEventListener("click", onColorClick));
 // 모드 변경 이벤트
 modeBtn.addEventListener("click", onModeClick);
+// 리셋 이벤트
+clearBtn.addEventListener("click", onClearClick);
+// 지우기 이벤트
+eraserBtn.addEventListener("click", onEraserClick);
