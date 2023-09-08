@@ -10,10 +10,6 @@
 	</head>
 	<body>
 		<div>
-			<input type="file" accept="image/*" id="img" />
-		</div>
-
-		<div>
 			<canvas></canvas>
 		</div>
 
@@ -26,7 +22,9 @@
 				max="10"
 				value="5"
 			/>
+
 			<input type="color" id="color" />
+
 			<div id="palette">
 				<div>
 					<div
@@ -97,9 +95,12 @@
 					></div>
 				</div>
 			</div>
+
 			<button id="mode_btn">Fill</button>
 			<button id="clear_btn">Clear</button>
 			<button id="eraser_btn">Eraser</button>
+
+			<input type="file" accept="image/*" id="img" />
 		</div>
 
 		<script src="app.js"></script>

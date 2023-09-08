@@ -27,7 +27,7 @@ body {
 	accent-color: #ffca1d;
 }
 #option {
-	height: 35%;
+	height: 40%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
