@@ -1,15 +1,70 @@
+@import "reset.css";
+
 canvas {
 	width: 800px;
 	height: 800px;
-	border: 1px solid black;
+	border: none;
+	border-radius: 10px;
+	box-shadow: 1px 1px 5px gray;
 }
 body {
 	display: flex;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
+}
+#line_width {
+	background: linear-gradient(
+		to right,
+		#ffe283 0%,
+		#ffe283 50%,
+		#ececec 50%,
+		#ececec 100%
+	);
+	border-radius: 8px;
+	outline: none;
+	transition: background 450ms ease-in;
+	appearance: none;
+	accent-color: #ffca1d;
+}
+#option {
+	height: 35%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+#palette {
+	display: flex;
 }
 .color-option {
 	width: 50px;
 	height: 50px;
 	cursor: pointer;
+	margin: 5px;
+	border-radius: 50px;
+	transition: all 0.1s linear;
+}
+.color-option:hover {
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	margin: 5px;
+	border-radius: 50px;
+	transform: scale(1.1);
+}
+button {
+	color: #fff;
+	padding: 10px;
+	background-color: #03c75a;
+	box-shadow: 1px 1px 5px gray;
+	border: none;
+	border-radius: 10px;
+}
+button:hover {
+	cursor: pointer;
+	color: #fff;
+	padding: 10px;
+	background-color: #17b75e;
+	box-shadow: 1px 1px 5px gray;
+	border: none;
+	border-radius: 10px;
 }

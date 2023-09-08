@@ -116,7 +116,9 @@ lineWidth.addEventListener("change", onlineWidthChange);
 // 색 변경 이벤트
 color.addEventListener("change", ocColorChange);
 // 팔레트 색 변경 이벤트
-colorOptions.forEach((color) => color.addEventListener("click", onColorClick));
+colorOptions.forEach((color) =>
+	color.addEventListener("click", onColorClick)
+);
 // 모드 변경 이벤트
 modeBtn.addEventListener("click", onModeClick);
 // 리셋 이벤트
@@ -125,3 +127,16 @@ clearBtn.addEventListener("click", onClearClick);
 eraserBtn.addEventListener("click", onEraserClick);
 // 이미지 추가 이벤트
 fileInput.addEventListener("change", onImgChanger);
+
+document
+	.querySelector(".line_width")
+	.addEventListener("input", function (event) {
+		var gradient_value =
+			100 / event.target.attributes.max.value;
+		event.target.style.background =
+			"linear-gradient(to right, #FFE283 0%, #FFE283 " +
+			gradient_value * event.target.value +
+			"%, rgb(236, 236, 236) " +
+			gradient_value * event.target.value +
+			"%, rgb(236, 236, 236) 100%)";
+	});
