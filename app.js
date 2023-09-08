@@ -1,3 +1,5 @@
+// 이미지 추가 버튼 불러오기
+const fileInput = document.getElementById("img");
 // 모드변경 버튼 불러오기
 const modeBtn = document.getElementById("mode_btn");
 // 클리어버튼 불러오기
@@ -89,6 +91,18 @@ function onEraserClick() {
 	isFilling = false;
 	modeBtn.innerText = "Fill";
 }
+// 이미지 추가
+function onImgChanger(e) {
+	const file = e.target.files[0];
+	const url = URL.createObjectURL(file);
+	console.log(url);
+	const image = new Image();
+	image.src = url;
+	image.onload = function () {
+		ctx.drawImage(image, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+		fileInput.value = null;
+	};
+}
 
 // 캔버스에 선그리는 이벤트
 canvas.addEventListener("mousemove", onMove);
@@ -109,3 +123,5 @@ modeBtn.addEventListener("click", onModeClick);
 clearBtn.addEventListener("click", onClearClick);
 // 지우기 이벤트
 eraserBtn.addEventListener("click", onEraserClick);
+// 이미지 추가 이벤트
+fileInput.addEventListener("change", onImgChanger);
